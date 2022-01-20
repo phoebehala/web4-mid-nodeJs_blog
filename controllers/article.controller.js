@@ -1,7 +1,9 @@
 const Article = require('../models/article')
 
 exports.getArticles= (req,res,next)=>{
-    res.send('in the article route')
+    //res.send('in the article route')
+    //res.render('articles/create', { article: new Article() })
+
 }
 
 exports.getById =async (req,res,next)=>{
@@ -9,20 +11,18 @@ exports.getById =async (req,res,next)=>{
     // res.send(req.params.id)
     const article = await Article.findById(req.params.id)  // .findById() >>> async
     if(article==null) res.redirect('/')  // if there is no article, redirect the user to the home page
-    res.render('articles/detail', {article:article})
+    res.render('articles/detail', {article:article , pageTitle:' Article details'})
 }
 
-exports.createArticle=(req,res,next)=>{
-    res.render('articles/create',{article:new Article()})
+exports.createArticle =  (req, res)=>{
+    res.render('articles/create', { article: new Article(), pageTitle:'Create an Article' })
 }
-
 
 exports.postArticle =  async(req,res,next)=>{
     console.log(req.body); // thanks to app.use(express.urlencoded({extended: false}))
     let article = new Article({
         title:req.body.title,
         description: req.body.description,
-        markdown:req.body.markdown,
         
     })
     try{
@@ -39,17 +39,16 @@ exports.postArticle =  async(req,res,next)=>{
 
 exports.getEditById = async (req,res,next)=>{
     const article = await Article.findById(req.params.id)
-    res.render('articles/edit',{article:article})
+    res.render('articles/edit',{article:article,  pageTitle:' Article editing'})
 }
 
 exports.putArticle = async (req,res,next)=>{
     let article = await Article.findById(req.params.id);
-    const {title, description, markdown}= req.body
+    const {title, description}= req.body
     //console.log(req.body);
 
     article.title=title;
     article.description=description;
-    article.markdown=markdown;
 
     try{
         // .save() >>> async

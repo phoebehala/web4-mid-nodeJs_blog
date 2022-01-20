@@ -2,13 +2,13 @@ const express =require('express');
 const router = express.Router()
 const Article = require('../models/article')
 const articleController = require('../controllers/article.controller');
-const article = require('../models/article');
 
-router.get('/', articleController.getArticles)  // localhost:port/article/
 
-router.get('/:id', articleController.getById )
+router.get('/', articleController.getArticles)  // localhost:port/articles/
 
 router.get('/create', articleController.createArticle) 
+
+router.get('/:id', articleController.getById )
 
 router.post('/create', articleController.postArticle)
 

@@ -35,12 +35,16 @@ app.get('/', async(req, res, next)=>{
 
     // .sort({ createdAt: -1 }) 或 .sort({ createdAt: 'desc' })
     const articles = await Article.find().sort({ createdAt: -1 })  // .find()>>> async. find all articles
-    res.render('articles/index', {articles: articles})  // views/articles/index.ejs
+    res.render('articles/index', {articles: articles, pageTitle:'All Blogs' })  // views/articles/index.ejs
 })
 
 
 const articleRoutes = require('./routes/articles.route')
 app.use('/articles',articleRoutes) // localhost:8000/articles/...
+
+app.use((req, res)=>{
+    res.status(404).render('404', {pageTitle:'404'})
+})
 
 const PORT = process.env.PORT || 8000
 // after the connection successfully connected, fire the callback () => { app.listen(PORT)}
