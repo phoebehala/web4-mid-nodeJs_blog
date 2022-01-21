@@ -1,0 +1,28 @@
+<%- include("./partials/head.ejs") %>
+
+<%- include("./partials/navAdmin.ejs") %>
+
+<div class="container">
+    <h1 class="mb-1"><%= article.title %></h1>
+    
+    
+    <div class="container">
+
+      <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title mt-3 text-center" ><%=  article.title %> </h2>
+            <div class="card-subtitle text-muted mb-2 text-center"><%=  article.createdAt.toLocaleDateString() %></div>
+            <div class="card-text mb-2"><%= article.description %> </div>
+
+            
+        </div>
+    
+    </div>
+    
+
+    
+    
+
+<div>
+
+<%- include("./partials/footer.ejs") %>

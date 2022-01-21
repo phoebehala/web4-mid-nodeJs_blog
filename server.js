@@ -47,7 +47,6 @@ const isAuth = (req, res, next)=>{
     }
 }
 
-
 app.get('/', async(req, res, next)=>{
  
     console.log('req.session:',req.session);
@@ -74,15 +73,33 @@ app.get('/', async(req, res, next)=>{
     res.render('home', {articles: articles, pageTitle:'All Blogs' })  // views/home.ejs
 })
 
+/* doesn't work well
+app.get('/:id', async(req, res, next)=>{
+    console.log('req.params:',req.params)
+    console.log(req.params.id);
+    
+    const article = await Article.findById(req.params.id)
+    console.log(article);
+    //res.send('hi')
+    res.render('detailForVisitor', {article: article, pageTitle:'detail for visitor' })
+   
+})
+*/
+
+
 // only the login user can visit these routes (req.session.isAuth is true)
 app.use('/articles',isAuth, articleRoutes) // localhost:8000/articles/...
 
 const authRoute = require('./routes/auth.route');
 app.use(authRoute)  // localhost:port/...
 
+
+
+
 app.use((req, res)=>{
     res.status(404).render('404', {pageTitle:'404'})
 })
+
 
 const PORT = process.env.PORT || 8000
 // after the connection successfully connected, fire the callback () => { app.listen(PORT)}

@@ -66,6 +66,6 @@ exports.putArticle = async (req,res,next)=>{
 
 exports.deleteArticle =  async (req,res,next)=>{
     await Article.findByIdAndDelete(req.params.id);
-    res.redirect('/')
+    res.redirect('/articles')
 
 }
