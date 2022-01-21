@@ -81,6 +81,7 @@ exports.postSignup = async (req,res,next) => {
                 console.log(err)
             })
         }else{
+            console.log('signup fails');
             res.redirect('/signup')
         }
 

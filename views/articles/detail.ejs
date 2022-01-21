@@ -1,22 +1,37 @@
 <%- include("../partials/head.ejs") %>
 
-<%- include("../partials/nav.ejs") %>
+<%- include("../partials/navAdmin.ejs") %>
 
 <div class="container">
     <h1 class="mb-1"><%= article.title %></h1>
-    <div class="text-muted mb-2">
-      <%= article.createdAt.toLocaleDateString() %>
-    </div>
-    <a href="/" class="btn btn-secondary">All Articles</a>
-    <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+    
+    
+    <div class="container">
 
-    <div><%= article.description %></div>
+      <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title mt-3 text-center" ><%=  article.title %> </h2>
+            <div class="card-subtitle text-muted mb-2 text-center"><%=  article.createdAt.toLocaleDateString() %></div>
+            
+            <div class="text-right mb-3">
+                <!-- <a href="/" class="btn btn-secondary">All Articles</a> -->
+                <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+            
+                <!-- npm i method-override -->
+                <form class="d-inline" action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <div class="card-text mb-2"><%= article.description %> </div>
+
+            
+        </div>
+    
+    </div>
     
 
-    <!-- npm i method-override -->
-    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+    
+    
 
 <div>
 

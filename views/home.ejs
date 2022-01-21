@@ -10,8 +10,14 @@
                 <div class="card-body">
                     <h4 class="card-title"><%=  article.title %> </h4>
                     <div class="card-subtitle text-muted mb-2"><%=  article.createdAt.toLocaleDateString() %></div>
-                    <div class="card-text mb-2"><%= article.description %> </div>
-                    <a href="/articles/<%=  article.id %>" >read more...</a>
+                    <div class="card-text mb-2">
+                        <% if(article.description.length >= 25) { %>
+                            <%= article.description.slice(0, 25).concat('...') %>
+                        <% }else{ %>
+                            <%= article.description %>
+                        <% } %>
+                    </div>
+                    <a href="/articles/<%=  article.id %>" >read more</a>
                 </div>
             </div>
         <% }) %> 

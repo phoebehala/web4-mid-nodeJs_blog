@@ -2,28 +2,29 @@
 
 <%- include('../partials/nav.ejs')%>
 
-    <main class="container mt-5 pt-5 ">
-
+    <div class="container mt-5 pt-5 "></div>
+    <main class="row justify-content-center mt-5">
         <form action="/login" method="post">
 
-            <div class="field">
+            <div class="field mt-3 ">
                 <label class="label" for="email">Email</label>
                 <div class="control">
                     <input class="input" type="email" name="email" />
                 </div>
             </div>
-            <div class="field">
+            <div class="field mt-3">
                 <label class="label" for="password">Password</label>
                 <div class="control">
                     <input class="input" type="password" name="password" />
                 </div>
             </div>
 
-            <button class="button is-primary" type="submit">
-                Login
-            </button>
+            <div class="text-center  mt-4">
+                <button class="btn btn-info" type="submit"> Login </button>
+            </div>
 
         </form>
+
 
     </main>
 
