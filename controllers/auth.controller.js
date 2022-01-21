@@ -3,6 +3,13 @@ const User = require('../models/user.model');
 // to encrypt // to hash password
 const bcrypt = require('bcrypt')
 
+const isAuth = (req, res, next)=>{
+    if(req.session.isAuth){
+        next()
+    }else{
+        res.redirect('/login')
+    }
+}
 
 exports.getLogin = (req,res,next) => {
 
@@ -33,6 +40,7 @@ exports.postLogin = (req,res,next) => {
                 return res.redirect('/login')
                       
             }
+            req.session.isAuth = true;
             res.redirect('/articles')
 
         }).catch(err => {
