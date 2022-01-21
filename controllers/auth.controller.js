@@ -16,25 +16,24 @@ exports.postLogin = (req,res,next) => {
     console.log('input for login:',req.body);
     const {username, email, password} = req.body
 
-    User.findOne({username:username}, (err, user)=>{
+    User.findOne({email:email}, (err, user)=>{
         if(err) console.log(err);
 
         if(!user){
-            res.redirect('/login')
+            console.log('no such user');
+            return res.redirect('/login')
         }
 
         // if found one
         // decrypt hash password to compare with encrypted password
         bcrypt.compare(password, user.password).then((isMatching) => {
             console.log('isMatching?',isMatching);
-            if(isMatching){
+            if(!isMatching){
                
-                    res.redirect('/articles')
-                
-            }else{
-
-                res.redirect('/login')
+                return res.redirect('/login')
+                      
             }
+            res.redirect('/articles')
 
         }).catch(err => {
             console.log(err)
