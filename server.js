@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const Article = require('./models/article')
 
-
+/*  middleware & static files */
+// make folder named public public to the browser
+app.use(express.static('public'))
 
 app.set('view engine', 'ejs') //  Set EJS as templating engine
 app.set('views','views') // set the name of views folder which we keep static file 'views' (but that is what it set by default, so we don't need to do that)
@@ -41,6 +43,9 @@ app.get('/', async(req, res, next)=>{
 
 const articleRoutes = require('./routes/articles.route')
 app.use('/articles',articleRoutes) // localhost:8000/articles/...
+
+const authRoute = require('./routes/auth.route');
+app.use(authRoute)  // localhost:port/...
 
 app.use((req, res)=>{
     res.status(404).render('404', {pageTitle:'404'})

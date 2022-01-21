@@ -1,0 +1,30 @@
+<%- include("../partials/head.ejs") %>
+
+<%- include('../partials/nav.ejs')%>
+
+    <main class="container mt-5 pt-5 ">
+
+        <form action="/login" method="post">
+
+            <div class="field">
+                <label class="label" for="username">Username</label>
+                <div class="control">
+                    <input class="input" type="text" name="username" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="username">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" />
+                </div>
+            </div>
+
+            <button class="button is-primary" type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </main>
+
+<%- include("../partials/footer.ejs") %>

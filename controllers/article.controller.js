@@ -1,8 +1,9 @@
 const Article = require('../models/article')
 
-exports.getArticles= (req,res,next)=>{
+exports.getArticles= async (req,res,next)=>{
     //res.send('in the article route')
-    //res.render('articles/create', { article: new Article() })
+    const articles = await Article.find().sort({ createdAt: -1 })  // .find()>>> async. find all articles
+    res.render('articles/index', {articles: articles, pageTitle:'All Blogs for Admin' })  // views/articles/index.ejs
 
 }
 

@@ -1,0 +1,43 @@
+<%- include("../partials/head.ejs") %>
+
+<%- include("../partials/nav.ejs") %>
+
+
+    <main class="container mt-5 ">
+
+        <form action="/signup" method="post">
+
+            <div class="field">
+                <label class="label col-md-6" for="username">Username</label>
+                <div class="control text-center">
+                    <input class="input col-md-6" type="text" name="username" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="username">Email</label>
+                <div class="control">
+                    <input class="input" type="email" name="email" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="username">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="username">Confirm Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="confirmPassword" />
+                </div>
+            </div>
+
+            <button class="button is-primary" type="submit">
+                Sign Up
+            </button>
+
+        </form>
+
+    </main>
+
+<%- include("../partials/footer.ejs") %>
